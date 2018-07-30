@@ -287,7 +287,7 @@
 
                     console.log(iconUrl);
                     aircraft[unit.id] = { "unit": unit, "updated": new Date(), "marker": new google.maps.Marker({ position: { lat: unit.lat, lng: unit.long }, icon: icon }) }
-                    if (unit.playerName) aircraft[unit.id].marker.setLabel({ fontSize: "16", text: unit.playerName, fontWeight: "800" })
+                    if (unit.playerName) aircraft[unit.id].marker.setLabel({ fontSize: "12px", text: unit.playerName, fontWeight: "800" })
                     aircraft[unit.id].window = new google.maps.InfoWindow({ content: generateWindow(aircraft[unit.id]) })
                     aircraft[unit.id].marker.addListener('click', function () {
                         aircraft[unit.id].window.open(map, aircraft[unit.id].marker)
