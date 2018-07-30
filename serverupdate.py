@@ -1,5 +1,6 @@
 import socket
 import time
+import traceback
 import logging
 
 while True:
@@ -13,4 +14,4 @@ while True:
 			logging.error(traceback.format_exc())
 			# Logs the error appropriately. 
     
-	time.sleep(20)
+	time.sleep(15)
