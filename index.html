@@ -290,9 +290,18 @@
                     if (unit.playerName) aircraft[unit.id].marker.setLabel({ fontSize: "12px", text: unit.playerName, fontWeight: "800" })
                     aircraft[unit.id].window = new google.maps.InfoWindow({ content: generateWindow(aircraft[unit.id]) })
                     aircraft[unit.id].marker.addListener('click', function () {
-                        aircraft[unit.id].window.open(map, aircraft[unit.id].marker);
-                        if (window.lastOpenWindow) window.lastOpenWindow.close();
-                        window.lastOpenWindow = aircraft[unit.id].window;
+                        if (window.lastOpenWindow){
+                            window.lastOpenWindow.close();
+                            if (window.lastOpenWindow !== aircraft[unit.id].window){
+                                aircraft[unit.id].window.open(map, aircraft[unit.id].marker);
+                                window.lastOpenWindow = aircraft[unit.id].window;
+                            } else {
+                                window.lastOpenWindow = null;
+                            }
+                        } else {
+                            aircraft[unit.id].window.open(map, aircraft[unit.id].marker);
+                            window.lastOpenWindow = aircraft[unit.id].window;
+                        }
                     });
                     aircraft[unit.id].marker.setMap(map);
                 } else {
