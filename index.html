@@ -58,7 +58,7 @@
         var iconBase = 'icons/';
         var icon_classes = {
             fighters: ["F-15C", "M-2000C", "FA-18C_hornet", "MiG-31", "MiG-21Bis", "J-11A", "F-5E-3", "Su-27"],
-            attackers: ["Su-25T", "A-10C", "AJS37"],
+            attackers: ["Su-25T", "A-10C", "AJS37", "AV8BNA"],
             helos: ["UH-1H"],
             tankers: ["IL-78M", "KC-135", "KC130"],
             awacs: ["E-3A", "A-50"],
@@ -290,7 +290,9 @@
                     if (unit.playerName) aircraft[unit.id].marker.setLabel({ fontSize: "12px", text: unit.playerName, fontWeight: "800" })
                     aircraft[unit.id].window = new google.maps.InfoWindow({ content: generateWindow(aircraft[unit.id]) })
                     aircraft[unit.id].marker.addListener('click', function () {
-                        aircraft[unit.id].window.open(map, aircraft[unit.id].marker)
+                        aircraft[unit.id].window.open(map, aircraft[unit.id].marker);
+                        if (window.lastOpenWindow) window.lastOpenWindow.close();
+                        window.lastOpenWindow = aircraft[unit.id].window;
                     });
                     aircraft[unit.id].marker.setMap(map);
                 } else {
